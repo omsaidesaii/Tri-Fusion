@@ -1,0 +1,233 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background: #0d1117;
+    color: #c9d1d9;
+    min-height: 100vh;
+    overflow: hidden;
+}
+.container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    position: relative;
+    padding: 20px;
+    gap: 20px;
+}
+.left,.right{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 6px;
+    overflow: hidden;
+}
+textarea{
+    width: 100%;
+    height: calc(33.33vh - 40px);
+    background-color: #0d1117;
+    color: #e6edf3;
+    padding: 16px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    line-height: 1.5;
+    resize: none;
+    border-bottom: 1px solid #30363d;
+    tab-size: 4;
+}
+textarea:focus {
+    background-color: #0d1117;
+}
+iframe{
+    width: 100%;
+    height: calc(100vh - 40px);
+    background-color: #ffffff;
+    border: none;
+    outline: none;
+}
+label i{
+    margin-right: 8px;
+    font-size: 14px;
+    color: #8b949e;
+}
+label{
+    display: flex;
+    align-items: center;
+    background: #161b22;
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #8b949e;
+    border-bottom: 1px solid #30363d;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    height: 40px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 6px;
+    border: 2px solid #0d1117;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #3f444c;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .left, .right {
+        width: 100%;
+    }
+
+    textarea {
+        height: 200px;
+    }
+
+    iframe {
+        height: 300px;
+    }
+}
+
+/* Editor Section Styling */
+.editor-section {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    margin-bottom: 10px;
+}
+
+.editor-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Active Editor Highlight */
+.editor-section.active label {
+    background: #161b22;
+    color: #8b949e;
+}
+
+.editor-section.active label i {
+    color: #8b949e;
+}
+
+/* Hover Effects */
+textarea:hover {
+    background-color: #0d1117;
+}
+
+label:hover {
+    background: #1c2128;
+}
+
+/* Focus States */
+textarea:focus {
+    box-shadow: none;
+}
+
+/* Editor Section Styling */
+.editor-section {
+    position: relative;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Code Highlighting */
+.editor-section:nth-child(1) label i {
+    color: #e34c26;
+}
+
+.editor-section:nth-child(2) label i {
+    color: #264de4;
+}
+
+.editor-section:nth-child(3) label i {
+    color: #f7df1e;
+}
+
+/* Output Section */
+.right .editor-section label i {
+    color: #238636;
+}
+
+/* Text Areas */
+#html-code, #css-code, #javascript-code {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    border: none;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    resize: none;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+#html-code {
+    color: #ff7b72; /* Reddish color for HTML */
+}
+
+#css-code {
+    color: #79c0ff; /* Blue color for CSS */
+}
+
+#javascript-code {
+    color: #4ec9b0 !important; /* Teal color for JavaScript */
+}
+
+/* CodeMirror Customization */
+.CodeMirror {
+    height: 100% !important;
+    font-family: 'Fira Code', monospace !important;
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+    background: #1e1e1e !important;
+    color: #d4d4d4 !important;
+}
+
+/* Custom colors for different languages */
+.cm-s-default .cm-tag { color: #ff7b72 !important; } /* HTML tags */
+.cm-s-default .cm-attribute { color: #ffa657 !important; } /* HTML attributes */
+.cm-s-default .cm-string { color: #a5d6ff !important; } /* Strings */
+.cm-s-default .cm-property { color: #79c0ff !important; } /* CSS properties */
+.cm-s-default .cm-atom { color: #ff7b72 !important; } /* HTML elements */
+.cm-s-default .cm-keyword { color: #ff7b72 !important; } /* Keywords */
+.cm-s-default .cm-variable { color: #ffa657 !important; } /* Variables */
+.cm-s-default .cm-def { color: #4ec9b0 !important; } /* Function definitions */
+.cm-s-default .cm-number { color: #b5cea8 !important; } /* Numbers */
+.cm-s-default .cm-comment { color: #6a9955 !important; } /* Comments */
+
+/* JavaScript specific styles */
+.cm-s-default .cm-js-keyword { color: #4ec9b0 !important; }
+.cm-s-default .cm-js-variable { color: #4ec9b0 !important; }
+.cm-s-default .cm-js-property { color: #4ec9b0 !important; }

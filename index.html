@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code-Editor</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/59c35f8408.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="left">
+            <div class="editor-section">
+                <label><i class="fa-brands fa-html5"></i>HTML</label>
+                <textarea id="html-code" onkeyup="run()" spellcheck="false"></textarea>
+            </div>
+
+            <div class="editor-section">
+                <label><i class="fa-brands fa-css3-alt"></i>CSS</label>
+                <textarea id="css-code" onkeyup="run()" spellcheck="false"></textarea>
+            </div>
+
+            <div class="editor-section">
+                <label><i class="fa-brands fa-js"></i>JavaScript</label>
+                <textarea id="javascript-code" onkeyup="run()" spellcheck="false"></textarea>
+            </div>
+        </div>
+        <div class="right">
+            <div class="editor-section">
+                <label><i class="fa-solid fa-play"></i>Output</label>
+                <iframe id="output"></iframe>
+            </div>
+        </div>
+    </div>
+    <script>
+        function run() {
+            let htmlCode = document.getElementById("html-code").value;
+            let cssCode = document.getElementById("css-code").value;
+            let javascriptCode = document.getElementById("javascript-code").value;
+            let output = document.getElementById("output");
+
+            output.contentDocument.body.innerHTML = htmlCode + "<style>" + cssCode + "</style>";
+            output.contentWindow.eval(javascriptCode);
+        }
+
+        // Add active state to editor sections
+        const editorSections = document.querySelectorAll('.editor-section');
+        editorSections.forEach(section => {
+            const textarea = section.querySelector('textarea');
+            textarea.addEventListener('focus', () => {
+                editorSections.forEach(s => s.classList.remove('active'));
+                section.classList.add('active');
+            });
+
+            // Handle tab key
+            textarea.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    e.preventDefault(); // Prevent default tab behavior
+                    
+                    // Get cursor position
+                    const start = this.selectionStart;
+                    const end = this.selectionEnd;
+                    
+                    // Insert tab at cursor position
+                    this.value = this.value.substring(0, start) + '\t' + this.value.substring(end);
+                    
+                    // Move cursor after the inserted tab
+                    this.selectionStart = this.selectionEnd = start + 1;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
